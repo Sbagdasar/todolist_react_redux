@@ -6,7 +6,7 @@ export type TodolistPropsType = {
     title: string
     tasks: TaskType[]
     removeTask: (taskId: string) => void
-    setFilter: (filter: FilterValueType) => void
+    changeFilter: (id: string, filter: FilterValueType) => void
     addTask: (title: string) => void
     changeTaskStatus: (taskId: string, isDone: boolean) => void
     filter: FilterValueType
@@ -35,13 +35,13 @@ export const Todolist = (props: TodolistPropsType) => {
     }
 
     const allFilterHandler = () => {
-        props.setFilter('all')
+        props.changeFilter(props.id, 'all')
     }
     const activeFilterHandler = () => {
-        props.setFilter('active')
+        props.changeFilter(props.id, 'active')
     }
     const completedFilterHandler = () => {
-        props.setFilter('completed')
+        props.changeFilter(props.id, 'completed')
     }
     return (
         <div>
