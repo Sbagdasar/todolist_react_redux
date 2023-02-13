@@ -20,8 +20,11 @@ export const Todolist = (props: TodolistPropsType) => {
         }
     }
     const addTaskHandler = () => {
-        props.addTask(title)
-        setTitle('')
+        if(title.trim() !== ''){
+            props.addTask(title.trim())
+            setTitle('')
+        }
+
     }
 
     const allFilterHandler = () => {
