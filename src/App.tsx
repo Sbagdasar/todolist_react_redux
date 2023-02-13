@@ -68,6 +68,12 @@ export function App() {
         setTasks({...tasks, [newTodolistId]:[]})
         debugger
     }
+    const changeTodolistTitle = (todolistId:string, title:string) => {
+        setTodolists(todolists.map(tl=>tl.id === todolistId? {...tl, title}:tl))
+    }
+    const changeTaskTitle = (todolistId:string, taskId:string, title:string) => {
+        setTasks({...tasks, [todolistId]:tasks[todolistId].map(t=> t.id === taskId? {...t, title}:t)})
+    }
     return (
         <div className="App">
             <AddItemForm addItem={addTodolist}/>
@@ -91,7 +97,9 @@ export function App() {
                                      changeFilter={changeFilter}
                                      addTask={addTask}
                                      changeTaskStatus={changeTaskStatus}
+                                     changeTaskTitle={changeTaskTitle}
                                      removeTodolist={removeTodolist}
+                                     changeTodolistTitle={changeTodolistTitle}
                                      filter={todolist.filter}
                     />
                 })
