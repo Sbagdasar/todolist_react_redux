@@ -39,9 +39,10 @@ export function App() {
             <Todolist title={'What to buy'}
                       tasks={filteredTasks}
                       removeTask={removeTask}
-                      filter={setFilter}
+                      setFilter={setFilter}
                       addTask={addTask}
                       changeTaskStatus={changeTaskStatus}
+                      filter={filter}
             />
         </div>
     );
