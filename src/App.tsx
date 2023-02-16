@@ -33,6 +33,7 @@ export function App() {
             {id: v1(), title: 'HTML&CSS', isDone: true},
             {id: v1(), title: 'JS', isDone: true},
             {id: v1(), title: 'ReactJS', isDone: false},
+            {id: v1(), title: 'NextJS', isDone: false},
 
         ],
         [todolistID2]: [
