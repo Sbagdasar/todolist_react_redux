@@ -55,7 +55,7 @@ export const Todolist = (props: TodolistPropsType) => {
                 </div>
             </div>
 
-            <ul>
+            <div>
                 {
                     props.tasks.map(task => {
                         const removeTaskHandler = () => {
@@ -67,19 +67,19 @@ export const Todolist = (props: TodolistPropsType) => {
                         const changeTaskTitleHandler = (title: string) => {
                             props.changeTaskTitle(props.id, task.id, title)
                         }
-                        return <li key={task.id} className={task.isDone ? 'is-done' : ''}>
+                        return <div key={task.id} className={task.isDone ? 'is-done' : ''}>
                             <Checkbox checked={task.isDone} color={'primary'} onChange={changeTaskStatusHandler}/>
                             <EditableSpan value={task.title} onchange={changeTaskTitleHandler}/>
 
                             <IconButton onClick={removeTaskHandler} size={'small'}>
                                 <Delete/>
                             </IconButton>
-                        </li>
+                        </div>
                     })
                 }
 
 
-            </ul>
+            </div>
             <div>
                 <Button variant={props.filter === 'all' ? 'contained' : 'text'} size={'small'}
                         onClick={allFilterHandler}>All

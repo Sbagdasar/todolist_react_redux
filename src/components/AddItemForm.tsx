@@ -1,7 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
-import Button from "@mui/material/Button";
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import TextField from "@mui/material/TextField";
+import IconButton from "@mui/material/IconButton";
 
 type AddItemFormPropsType = {
     addItem: (title: string) => void
@@ -34,13 +34,12 @@ export const AddItemForm = (props: AddItemFormPropsType) => {
                        value={title}
                        onChange={onChangeTitle}
                        onKeyUp={onKeyPressHandler}
-                       size={'small'}/>
-            <Button style={{maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px'}}
+                       size={'small'} label={'Title'} helperText={error}/>
+            <IconButton color={'primary'}
                     onClick={addTaskHandler}>
                 <AddBoxOutlinedIcon/>
-            </Button>
+            </IconButton>
 
-            {error && <div className={'error-message'}>{error}</div>}
         </div>
     );
 };
