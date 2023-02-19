@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from 'react';
-import {FilterValueType, TaskType} from "../App";
+import {FilterValuesType, TaskType} from "../App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
 import IconButton from "@mui/material/IconButton";
@@ -12,13 +12,13 @@ export type TodolistPropsType = {
     title: string
     tasks: TaskType[]
     removeTask: (todolistId: string, taskId: string) => void
-    changeFilter: (id: string, filter: FilterValueType) => void
+    changeFilter: (id: string, filter: FilterValuesType) => void
     addTask: (todolistId: string, title: string) => void
     changeTaskStatus: (todolistId: string, taskId: string, isDone: boolean) => void
     changeTaskTitle: (todolistId: string, taskId: string, title: string) => void
     removeTodolist: (todolistId: string) => void
     changeTodolistTitle: (todolistId: string, title: string) => void
-    filter: FilterValueType
+    filter: FilterValuesType
 }
 export const Todolist = (props: TodolistPropsType) => {
     const addTaskHandler = (title: string) => {
