@@ -38,7 +38,7 @@ export const todolistsReducer = (state: StateType, action: ActionType) => {
             return state.map(tl => tl.id === action.id ? {...tl, filter: action.filter} : tl)
         }
         default:
-            throw new Error('I don\'t understand this type')
+            return state
     }
 }
 
