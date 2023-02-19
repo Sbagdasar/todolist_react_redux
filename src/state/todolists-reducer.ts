@@ -12,7 +12,7 @@ type AddTodolistType = {
     type: 'ADD-TODOLIST'
     title: string
 }
-type ChangeTodolistTitleType = {
+export type ChangeTodolistTitleType = {
     type: 'CHANGE-TODOLIST-TITLE'
     id: string
     title: string
