@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import './App.css';
 import {Todolist} from "./components/Todolist";
 import {v1} from "uuid";
@@ -67,10 +67,10 @@ let dispatch = useDispatch()
         const action = removeTodolistAC(todolistId)
         dispatch(action)
     }
-    const addTodolist = (title: string) => {
+    const addTodolist = useCallback((title: string) => {
         const action = addTodolistAC(title)
         dispatch(action)
-    }
+    },[])
     const changeTodolistTitle = (todolistId: string, title: string) => {
         dispatch(changeTodolistTitleAC(todolistId,title))
     }
