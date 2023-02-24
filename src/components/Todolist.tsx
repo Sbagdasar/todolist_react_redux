@@ -41,6 +41,14 @@ export const Todolist = memo((props: TodolistPropsType) => {
     const completedFilterHandler = () => {
         props.changeFilter(props.id, 'completed')
     }
+let tasksForTodolist = props.tasks
+    if (props.filter === 'active') {
+        tasksForTodolist = tasksForTodolist.filter(t => !t.isDone)
+    } else if (props.filter === 'completed') {
+        tasksForTodolist = tasksForTodolist.filter(t => t.isDone)
+
+    }
+
     return (
         <div>
             <div>
@@ -58,7 +66,7 @@ export const Todolist = memo((props: TodolistPropsType) => {
 
             <div>
                 {
-                    props.tasks.map(task => {
+                    tasksForTodolist.map(task => {
                         const removeTaskHandler = () => {
                             props.removeTask(props.id, task.id)
                         }
