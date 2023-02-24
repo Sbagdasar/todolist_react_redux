@@ -24,7 +24,7 @@ export const Todolist = memo((props: TodolistPropsType) => {
     console.log('Todolist')
     const addTaskHandler = useCallback((title: string) => {
         props.addTask(props.id, title)
-    },[props.id])
+    }, [props.addTask, props.id])
     const removeTodolistHandler = () => {
         props.removeTodolist(props.id)
     }
@@ -32,16 +32,17 @@ export const Todolist = memo((props: TodolistPropsType) => {
         props.changeTodolistTitle(props.id, title)
     }
 
-    const allFilterHandler = () => {
+    const allFilterHandler = useCallback(() => {
         props.changeFilter(props.id, 'all')
-    }
-    const activeFilterHandler = () => {
+    }, [props.changeFilter, props.id])
+    const activeFilterHandler = useCallback(() => {
         props.changeFilter(props.id, 'active')
-    }
-    const completedFilterHandler = () => {
+    }, [props.changeFilter, props.id])
+    const completedFilterHandler = useCallback(() => {
         props.changeFilter(props.id, 'completed')
-    }
-let tasksForTodolist = props.tasks
+    }, [props.changeFilter, props.id])
+
+    let tasksForTodolist = props.tasks
     if (props.filter === 'active') {
         tasksForTodolist = tasksForTodolist.filter(t => !t.isDone)
     } else if (props.filter === 'completed') {
