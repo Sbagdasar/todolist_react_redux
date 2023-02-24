@@ -5,7 +5,7 @@ import {EditableSpan} from "./EditableSpan";
 import IconButton from "@mui/material/IconButton";
 import {Delete} from "@mui/icons-material";
 import Button from "@mui/material/Button";
-import Checkbox from "@mui/material/Checkbox";
+import {Task} from "./Task";
 
 export type TodolistPropsType = {
     id: string
@@ -21,7 +21,6 @@ export type TodolistPropsType = {
     filter: FilterValuesType
 }
 export const Todolist = memo((props: TodolistPropsType) => {
-    console.log('Todolist')
     const addTaskHandler = useCallback((title: string) => {
         props.addTask(props.id, title)
     }, [props.addTask, props.id])
@@ -68,23 +67,12 @@ export const Todolist = memo((props: TodolistPropsType) => {
             <div>
                 {
                     tasksForTodolist.map(task => {
-                        const removeTaskHandler = () => {
-                            props.removeTask(props.id, task.id)
-                        }
-                        const changeTaskStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
-                            props.changeTaskStatus(props.id, task.id, e.currentTarget.checked)
-                        }
-                        const changeTaskTitleHandler = (title: string) => {
-                            props.changeTaskTitle(props.id, task.id, title)
-                        }
-                        return <div key={task.id} className={task.isDone ? 'is-done' : ''}>
-                            <Checkbox checked={task.isDone} color={'primary'} onChange={changeTaskStatusHandler}/>
-                            <EditableSpan value={task.title} onchange={changeTaskTitleHandler}/>
 
-                            <IconButton onClick={removeTaskHandler} size={'small'}>
-                                <Delete/>
-                            </IconButton>
-                        </div>
+                        return <Task key={task.id} task={task}
+                                     todolistId={props.id}
+                                     removeTask={props.removeTask}
+                                     changeTaskStatus={props.changeTaskStatus}
+                                     changeTaskTitle={props.changeTaskTitle}/>
                     })
                 }
 

@@ -6,6 +6,8 @@ type EditableSpanPropsType = {
     onchange:(title:string)=>void
 }
 export const EditableSpan = ({value, onchange}:EditableSpanPropsType) => {
+
+    console.log('editable span')
     const [editMode, setEditMode] = useState<boolean>(false)
     const [title, setTitle] = useState<string>(value)
     const changeTitleHandler = (e:ChangeEvent<HTMLInputElement>) => {
