@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import React, {ChangeEvent, KeyboardEvent, memo, useState} from 'react';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
@@ -6,7 +6,7 @@ import IconButton from "@mui/material/IconButton";
 type AddItemFormPropsType = {
     addItem: (title: string) => void
 }
-export const AddItemForm = (props: AddItemFormPropsType) => {
+export const AddItemForm = memo((props: AddItemFormPropsType) => {
     const [title, setTitle] = useState<string>('')
     const [error, setError] = useState<string | null>(null)
     const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
@@ -45,5 +45,5 @@ export const AddItemForm = (props: AddItemFormPropsType) => {
 
         </div>
     );
-};
-
+}
+)
