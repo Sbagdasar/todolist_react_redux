@@ -1,23 +1,67 @@
-import React from 'react';
+import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 import {AddItemForm} from "../components/AddItemForm";
 import {action} from "@storybook/addon-actions";
+import TextField from "@mui/material/TextField";
+import IconButton from "@mui/material/IconButton";
+import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
     title: 'TODO/AddItemForm',
     component: AddItemForm,
-    // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
     argTypes: {
         addItem: { description: 'Buttton clicked' },
     },
 } as ComponentMeta<typeof AddItemForm>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof AddItemForm> = (args) => <AddItemForm {...args} />;
+const StoryWithErrorsTemplate: ComponentStory<typeof AddItemForm> = (args) => {
+    const [title, setTitle] = useState<string>('')
+    const [error, setError] = useState<string | null>('Title is required')
+    const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
+        setTitle(e.currentTarget.value)
+
+    }
+    const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+        if(error !== null){
+            setError(null)
+
+        }
+        if (e.key === 'Enter') {
+            addTaskHandler()
+        }
+    }
+    const addTaskHandler = () => {
+        if (title.trim() !== '') {
+            args.addItem(title.trim())
+            setTitle('')
+        } else {
+            setError('Title is required')
+        }
+
+    }
+    return (
+        <div>
+            <TextField error={!!error}
+                       value={title}
+                       onChange={onChangeTitle}
+                       onKeyUp={onKeyPressHandler}
+                       size={'small'} label={'Title'} helperText={error}/>
+            <IconButton color={'primary'}
+                        onClick={addTaskHandler}>
+                <AddBoxOutlinedIcon/>
+            </IconButton>
+
+        </div>
+    );
+}
 
 export const Primary = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
 Primary.args = {
+    addItem:action('button clicked')
+};
+
+export const StoryWithErrors = StoryWithErrorsTemplate.bind({});
+StoryWithErrors.args = {
     addItem:action('button clicked')
 };
