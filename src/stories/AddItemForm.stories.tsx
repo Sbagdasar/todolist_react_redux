@@ -10,7 +10,7 @@ export default {
     title: 'TODO/AddItemForm',
     component: AddItemForm,
     argTypes: {
-        addItem: { description: 'Buttton clicked' },
+        addItem: {description: 'Buttton clicked'},
     },
 } as ComponentMeta<typeof AddItemForm>;
 
@@ -23,7 +23,7 @@ const StoryWithErrorsTemplate: ComponentStory<typeof AddItemForm> = (args) => {
 
     }
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        if(error !== null){
+        if (error !== null) {
             setError(null)
 
         }
@@ -58,10 +58,10 @@ const StoryWithErrorsTemplate: ComponentStory<typeof AddItemForm> = (args) => {
 
 export const Primary = Template.bind({});
 Primary.args = {
-    addItem:action('button clicked')
+    addItem: action('button clicked')
 };
 
 export const StoryWithErrors = StoryWithErrorsTemplate.bind({});
 StoryWithErrors.args = {
-    addItem:action('button clicked')
+    addItem: action('button clicked')
 };
