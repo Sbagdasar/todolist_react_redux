@@ -26,7 +26,15 @@ export const GetTodolists = () => {
 export const CreateTodolist = () => {
   const [state, setState] = useState<any>(null)
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    axios
+      .post(
+        'https://social-network.samuraijs.com/api/1.1/todo-lists',
+        { title: 'NEW TITLE!!!!!' },
+        settings
+      )
+      .then(res => setState(res.data))
+  }, [])
 
   return <div>{JSON.stringify(state)}</div>
 }
