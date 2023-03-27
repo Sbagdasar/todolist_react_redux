@@ -1,6 +1,6 @@
 module.exports = {
-    preset: 'jest-puppeteer',
-    testRegex: './*\\.test\\.js$',
-    setupFilesAfterEnv: ['./setupTests.js'],
-    //testEnvironment:'node'
-};
+  preset: 'jest-puppeteer',
+  testRegex: './*\\.test\\.js$',
+  setupFilesAfterEnv: ['./setupTests.js'],
+  //testEnvironment:'node'
+}
