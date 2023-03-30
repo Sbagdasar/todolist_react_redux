@@ -1,4 +1,6 @@
 import axios from 'axios'
+
+import { CreateTodolist, UpdateTodolistTitle } from '../stories/todolists-api.stories'
 let instance = axios.create({
   baseURL: 'https://social-network.samuraijs.com/api/1.1/',
   withCredentials: true,
@@ -16,5 +18,14 @@ let settings = {
 export const todolistAPI = {
   getTodolists() {
     return instance.get('todo-lists')
+  },
+  createTodolist(title: string) {
+    return instance.post('todo-lists', { title })
+  },
+  deleteTodolist(id: string) {
+    return instance.delete(`todo-lists/${id}`)
+  },
+  updateTodolist(id: string, title: string) {
+    return instance.put(`todo-lists/${id}`, { title })
   },
 }
