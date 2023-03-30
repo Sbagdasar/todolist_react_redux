@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 
 import axios from 'axios'
 
+import { todolistAPI } from '../api/todolist-api'
+
 export default {
   title: 'API',
 }
@@ -16,9 +18,7 @@ export const GetTodolists = () => {
   const [state, setState] = useState<any>(null)
 
   useEffect(() => {
-    axios
-      .get('https://social-network.samuraijs.com/api/1.1/todo-lists', settings)
-      .then(res => setState(res.data))
+    todolistAPI.getTodolists().then(res => setState(res.data))
   }, [])
 
   return <div>{JSON.stringify(state)}</div>
