@@ -17,7 +17,7 @@ let settings = {
 
 export const todolistAPI = {
   getTodolists() {
-    return instance.get('todo-lists')
+    return instance.get<TodolistType[]>('todo-lists')
   },
   createTodolist(title: string) {
     return instance.post('todo-lists', { title })
@@ -28,4 +28,11 @@ export const todolistAPI = {
   updateTodolist(id: string, title: string) {
     return instance.put(`todo-lists/${id}`, { title })
   },
+}
+
+type TodolistType = {
+  id: string
+  addedDate: string
+  order: number
+  title: string
 }
