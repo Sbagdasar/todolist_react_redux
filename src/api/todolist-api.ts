@@ -34,6 +34,9 @@ export const todolistAPI = {
   deleteTask(todolistId: string, taskId: string) {
     return instance.delete<ResponseType>(`todo-lists/${todolistId}/tasks/${taskId}`)
   },
+  updateTask(todolistId: string, taskId: string, model: TaskType) {
+    return instance.put<ResponseType>(`todo-lists/${todolistId}/tasks/${taskId}`, model)
+  },
 }
 
 export type ResponseType<D = {}> = {
@@ -50,13 +53,13 @@ type TodolistType = {
   title: string
 }
 
-type TaskType = {
+export type TaskType = {
   description: string
   title: string
   status: number
   priority: number
-  startDate: string
-  deadline: string
+  startDate: string | null
+  deadline: string | null
   id: string
   todoListId: string
   order: number
