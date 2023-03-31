@@ -54,3 +54,17 @@ export const UpdateTodolistTitle = () => {
 
   return <div>{JSON.stringify(state)}</div>
 }
+
+//tasks
+
+export const GetTasks = () => {
+  const [state, setState] = useState<any>(null)
+
+  useEffect(() => {
+    let todolisId = '42d33842-c964-4736-b0bd-92a1da246158'
+
+    todolistAPI.getTasks(todolisId).then(res => setState(res.data))
+  }, [])
+
+  return <div>{JSON.stringify(state)}</div>
+}
