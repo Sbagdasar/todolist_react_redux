@@ -63,7 +63,18 @@ export const GetTasks = () => {
   useEffect(() => {
     let todolisId = '42d33842-c964-4736-b0bd-92a1da246158'
 
-    todolistAPI.getTasks(todolisId).then(res => setState(res.data))
+    todolistAPI.getTasks(todolisId).then(res => setState(res.data.items))
+  }, [])
+
+  return <div>{JSON.stringify(state)}</div>
+}
+export const CreateTasks = () => {
+  const [state, setState] = useState<any>(null)
+
+  useEffect(() => {
+    let todolisId = '42d33842-c964-4736-b0bd-92a1da246158'
+
+    todolistAPI.createTask(todolisId, 'New task').then(res => setState(res.data))
   }, [])
 
   return <div>{JSON.stringify(state)}</div>
