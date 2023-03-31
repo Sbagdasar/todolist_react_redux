@@ -3,6 +3,7 @@ import React from 'react'
 import { action } from '@storybook/addon-actions'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
+import { TaskPriorities, TaskStatuses } from '../api/todolist-api'
 import { Task } from '../components/Task'
 
 export default {
@@ -11,7 +12,18 @@ export default {
     changeTaskStatus: action('changed task status'),
     changeTaskTitle: action('changed task Title'),
     removeTask: action('task removed'),
-    task: { id: '1', title: 'CSS', isDone: true },
+    task: {
+      id: '1',
+      title: 'CSS',
+      status: TaskStatuses.New,
+      order: 0,
+      addedDate: '',
+      startDate: '',
+      deadline: '',
+      description: '',
+      priority: TaskPriorities.Middle,
+      todoListId: 'todolistId1',
+    },
     todolistId: 'todolistId1',
   },
   component: Task,
@@ -23,5 +35,16 @@ export const StoryTaskIsDone = Template.bind({})
 StoryTaskIsDone.args = {}
 export const StoryTaskIsNotDone = Template.bind({})
 StoryTaskIsNotDone.args = {
-  task: { id: '1', title: 'CSS', isDone: false },
+  task: {
+    id: '1',
+    title: 'CSS',
+    status: TaskStatuses.New,
+    order: 0,
+    addedDate: '',
+    startDate: '',
+    deadline: '',
+    description: '',
+    priority: TaskPriorities.Middle,
+    todoListId: 'todolistId1',
+  },
 }

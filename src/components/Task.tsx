@@ -4,14 +4,15 @@ import { Delete } from '@mui/icons-material'
 import Checkbox from '@mui/material/Checkbox'
 import IconButton from '@mui/material/IconButton'
 
-import { TaskType } from '../AppWithRedux'
+import { TaskStatuses, TaskType } from '../api/todolist-api'
 
 import { EditableSpan } from './EditableSpan'
+
 type TaskPropsType = {
   task: TaskType
   todolistId: string
   removeTask: (todolistId: string, taskId: string) => void
-  changeTaskStatus: (todolistId: string, taskId: string, isDone: boolean) => void
+  changeTaskStatus: (todolistId: string, taskId: string, status: TaskStatuses) => void
   changeTaskTitle: (todolistId: string, taskId: string, title: string) => void
 }
 export const Task = (props: TaskPropsType) => {
@@ -20,7 +21,11 @@ export const Task = (props: TaskPropsType) => {
   }
   const changeTaskStatusHandler = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      props.changeTaskStatus(props.todolistId, props.task.id, e.currentTarget.checked)
+      props.changeTaskStatus(
+        props.todolistId,
+        props.task.id,
+        e.currentTarget.checked ? TaskStatuses.Completed : TaskStatuses.New
+      )
     },
     [props.todolistId, props.task.id, props.changeTaskStatus]
   )
@@ -32,8 +37,15 @@ export const Task = (props: TaskPropsType) => {
   )
 
   return (
-    <div key={props.task.id} className={props.task.isDone ? 'is-done' : ''}>
-      <Checkbox checked={props.task.isDone} color={'primary'} onChange={changeTaskStatusHandler} />
+    <div
+      key={props.task.id}
+      className={props.task.status === TaskStatuses.Completed ? 'is-done' : ''}
+    >
+      <Checkbox
+        checked={props.task.status === TaskStatuses.Completed}
+        color={'primary'}
+        onChange={changeTaskStatusHandler}
+      />
       <EditableSpan value={props.task.title} onchange={changeTaskTitleHandler} />
 
       <IconButton onClick={removeTaskHandler} size={'small'}>

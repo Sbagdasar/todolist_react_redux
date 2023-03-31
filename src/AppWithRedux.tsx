@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography'
 import Grid2 from '@mui/material/Unstable_Grid2'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { TaskStatuses, TaskType } from './api/todolist-api'
 import { AddItemForm } from './components/AddItemForm'
 import { Todolist } from './components/Todolist'
 import { AppRootStateType } from './state/store'
@@ -25,27 +26,17 @@ import {
   addTodolistAC,
   changeTodolistFilterAC,
   changeTodolistTitleAC,
+  FilterValuesType,
   removeTodolistAC,
+  TodolistDomainType,
 } from './state/todolists-reducer'
-
-export type TaskType = {
-  id: string
-  title: string
-  isDone: boolean
-}
-export type TodolistType = {
-  id: string
-  title: string
-  filter: FilterValuesType
-}
-export type FilterValuesType = 'all' | 'completed' | 'active'
 
 export type TasksStateType = {
   [key: string]: TaskType[]
 }
 
 export function AppWithRedux() {
-  let todolists = useSelector<AppRootStateType, Array<TodolistType>>(state => state.todolists)
+  let todolists = useSelector<AppRootStateType, Array<TodolistDomainType>>(state => state.todolists)
 
   let tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
   let dispatch = useDispatch()
@@ -63,8 +54,8 @@ export function AppWithRedux() {
     [dispatch]
   )
   const changeTaskStatus = useCallback(
-    (todolistId: string, taskId: string, isDone: boolean) => {
-      dispatch(changeTaskStatusAC(taskId, isDone, todolistId))
+    (todolistId: string, taskId: string, status: TaskStatuses) => {
+      dispatch(changeTaskStatusAC(taskId, status, todolistId))
     },
     [dispatch]
   )
