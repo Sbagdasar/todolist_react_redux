@@ -1,9 +1,11 @@
 import { v1 } from 'uuid'
 
+import { TodolistType } from '../api/todolist-api'
+
 import {
-  addTodolistAC,
   changeTodolistFilterAC,
   changeTodolistTitleAC,
+  createTodolistAC,
   FilterValuesType,
   removeTodolistAC,
   TodolistDomainType,
@@ -31,8 +33,13 @@ test('correct todolist should be removed', () => {
 
 test('correct todolist should be added', () => {
   let newTodolistTitle = 'New Todolist'
-
-  const endState = todolistsReducer(startState, addTodolistAC(newTodolistTitle))
+  let todo: TodolistType = {
+    title: newTodolistTitle,
+    id: '123213',
+    addedDate: '',
+    order: 0,
+  }
+  const endState = todolistsReducer(startState, createTodolistAC(todo))
 
   expect(endState.length).toBe(3)
   expect(endState[2].title).toBe(newTodolistTitle)
