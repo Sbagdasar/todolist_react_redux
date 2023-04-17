@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton'
 
 import { TaskStatuses, TaskType } from '../api/todolist-api'
 
-import { EditableSpan } from './EditableSpan'
+import { EditableSpan } from './EditableSpan/EditableSpan'
 
 type TaskPropsType = {
   task: TaskType

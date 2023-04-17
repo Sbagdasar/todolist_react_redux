@@ -1,14 +1,16 @@
-import React, { memo, useCallback } from 'react'
+import React, { memo, useCallback, useEffect } from 'react'
 
 import { Delete } from '@mui/icons-material'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 
 import { TaskStatuses, TaskType } from '../api/todolist-api'
+import { useAppDispatch } from '../hooks/appHooks'
+import { setTasksTC } from '../state/tasks-reducer'
 import { FilterValuesType } from '../state/todolists-reducer'
 
-import { AddItemForm } from './AddItemForm'
-import { EditableSpan } from './EditableSpan'
+import { AddItemForm } from './AddItemForm/AddItemForm'
+import { EditableSpan } from './EditableSpan/EditableSpan'
 import { Task } from './Task'
 
 export type TodolistPropsType = {
@@ -25,6 +27,12 @@ export type TodolistPropsType = {
   filter: FilterValuesType
 }
 export const Todolist = memo((props: TodolistPropsType) => {
+  let dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(setTasksTC(props.id))
+  }, [])
+
   const addTaskHandler = useCallback(
     (title: string) => {
       props.addTask(props.id, title)
@@ -88,6 +96,7 @@ export const Todolist = memo((props: TodolistPropsType) => {
       <div>
         <Button
           variant={props.filter === 'all' ? 'contained' : 'text'}
+          color={'primary'}
           size={'small'}
           onClick={allFilterHandler}
         >
@@ -95,6 +104,7 @@ export const Todolist = memo((props: TodolistPropsType) => {
         </Button>
         <Button
           variant={props.filter === 'active' ? 'contained' : 'text'}
+          color={'secondary'}
           size={'small'}
           onClick={activeFilterHandler}
         >
@@ -102,6 +112,7 @@ export const Todolist = memo((props: TodolistPropsType) => {
         </Button>
         <Button
           variant={props.filter === 'completed' ? 'contained' : 'text'}
+          color={'success'}
           size={'small'}
           onClick={completedFilterHandler}
         >
