@@ -2,17 +2,17 @@ import React from 'react'
 
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import { AppWithRedux } from '../AppWithRedux'
+import { App } from '../app/App'
 
 import { ReduxStoreProviderDecorator } from './decorators/ReduxStoreProviderDecorator'
 
 export default {
-  title: 'TODO/AppWithRedux',
-  component: AppWithRedux,
+  title: 'TODO/App',
+  component: App,
   decorators: [ReduxStoreProviderDecorator],
-} as ComponentMeta<typeof AppWithRedux>
+} as ComponentMeta<typeof App>
 
-const Template: ComponentStory<typeof AppWithRedux> = args => <AppWithRedux />
+const Template: ComponentStory<typeof App> = args => <App />
 
 export const StoryAppWithRedux = Template.bind({})
 StoryAppWithRedux.args = {}

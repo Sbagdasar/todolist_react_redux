@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import axios from 'axios'
 
-import { TaskType, todolistAPI } from '../api/todolist-api'
+import { TaskType, todolistAPI, UpdateTaskModelType } from '../api/todolist-api'
 
 export default {
   title: 'API',
@@ -98,17 +98,13 @@ export const UpdateTask = () => {
   useEffect(() => {
     let todolisId = '42d33842-c964-4736-b0bd-92a1da246158'
     let taskId = '4f73eb79-f144-475c-9623-5981daf72f9a'
-    let model: TaskType = {
-      addedDate: '2023-03-31T17:46:27.683',
-      deadline: null,
-      id: taskId,
+    let model: UpdateTaskModelType = {
+      deadline: '',
+      startDate: '',
       description: '123123123',
-      order: 1,
       priority: 1,
-      startDate: null,
       status: 0,
       title: 'QQQQQQQQQQQQ',
-      todoListId: todolisId,
     }
 
     todolistAPI.updateTask(todolisId, taskId, model).then(res => setState(res.data))
