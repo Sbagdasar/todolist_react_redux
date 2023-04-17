@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField'
 import { action } from '@storybook/addon-actions'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import { AddItemForm } from '../components/AddItemForm'
+import { AddItemForm } from '../components/AddItemForm/AddItemForm'
 
 export default {
   title: 'TODO/AddItemForm',
