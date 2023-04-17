@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-import './App.css'
+import '../app/App.css'
 import MenuIcon from '@mui/icons-material/Menu'
 import { Paper } from '@mui/material'
 import AppBar from '@mui/material/AppBar'
@@ -12,10 +12,10 @@ import Typography from '@mui/material/Typography'
 import Grid2 from '@mui/material/Unstable_Grid2'
 import { v1 } from 'uuid'
 
-import { TaskPriorities, TaskStatuses, TaskType } from './api/todolist-api'
-import { AddItemForm } from './components/AddItemForm'
-import { Todolist } from './components/Todolist'
-import { FilterValuesType, TodolistDomainType } from './state/todolists-reducer'
+import { TaskPriorities, TaskStatuses, TaskType, todolistAPI } from '../api/todolist-api'
+import { AddItemForm } from '../components/AddItemForm/AddItemForm'
+import { Todolist } from '../components/Todolist'
+import { FilterValuesType, TodolistDomainType } from '../state/todolists-reducer'
 
 export type TasksStateType = {
   [key: string]: TaskType[]
