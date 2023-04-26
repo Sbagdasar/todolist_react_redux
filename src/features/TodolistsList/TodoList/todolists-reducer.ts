@@ -1,6 +1,5 @@
-import { todolistAPI, TodolistType } from '../api/todolist-api'
-
-import { AppThunkType } from './store'
+import { todolistAPI, TodolistType } from '../../../api/todolist-api'
+import { AppThunkType } from '../../../app/store'
 
 const initialState: StateType = []
 

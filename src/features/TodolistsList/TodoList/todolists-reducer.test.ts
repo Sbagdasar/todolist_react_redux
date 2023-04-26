@@ -1,6 +1,6 @@
 import { v1 } from 'uuid'
 
-import { TodolistType } from '../api/todolist-api'
+import { TodolistType } from '../../../api/todolist-api'
 
 import {
   changeTodolistFilterAC,
@@ -42,7 +42,7 @@ test('correct todolist should be added', () => {
   const endState = todolistsReducer(startState, createTodolistAC(todo))
 
   expect(endState.length).toBe(3)
-  expect(endState[2].title).toBe(newTodolistTitle)
+  expect(endState[0].title).toBe(newTodolistTitle)
 })
 
 test('correct todolist should change its name', () => {

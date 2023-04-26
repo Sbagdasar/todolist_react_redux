@@ -6,11 +6,12 @@ import { useSelector } from 'react-redux'
 
 import { TaskStatuses } from '../../api/todolist-api'
 import { TasksStateType } from '../../app/App'
+import { AppRootStateType } from '../../app/store'
 import { AddItemForm } from '../../components/AddItemForm/AddItemForm'
-import { Todolist } from '../../components/Todolist'
 import { useAppDispatch } from '../../hooks/appHooks'
-import { AppRootStateType } from '../../state/store'
-import { createTaskTC, removeTaskTC, updateTaskTC } from '../../state/tasks-reducer'
+
+import { createTaskTC, removeTaskTC, updateTaskTC } from './TodoList/tasks-reducer'
+import { Todolist } from './TodoList/Todolist'
 import {
   changeTodolistFilterAC,
   changeTodolistTitleTC,
@@ -19,7 +20,7 @@ import {
   getTodolistsTC,
   removeTodoListTC,
   TodolistDomainType,
-} from '../../state/todolists-reducer'
+} from './TodoList/todolists-reducer'
 
 export const TodoListsList = () => {
   let dispatch = useAppDispatch()

@@ -4,10 +4,10 @@ import {
   TaskType,
   todolistAPI,
   UpdateTaskModelType,
-} from '../api/todolist-api'
-import { TasksStateType } from '../trash/App'
+} from '../../../api/todolist-api'
+import { TasksStateType } from '../../../app/App'
+import { AppThunkType } from '../../../app/store'
 
-import { AppThunkType } from './store'
 import {
   CreateTodolistActionType,
   RemoveTodolistActionType,

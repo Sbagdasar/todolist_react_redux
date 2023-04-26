@@ -4,14 +4,14 @@ import { Delete } from '@mui/icons-material'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 
-import { TaskStatuses, TaskType } from '../api/todolist-api'
-import { useAppDispatch } from '../hooks/appHooks'
-import { setTasksTC } from '../state/tasks-reducer'
-import { FilterValuesType } from '../state/todolists-reducer'
+import { TaskStatuses, TaskType } from '../../../api/todolist-api'
+import { AddItemForm } from '../../../components/AddItemForm/AddItemForm'
+import { EditableSpan } from '../../../components/EditableSpan/EditableSpan'
+import { useAppDispatch } from '../../../hooks/appHooks'
 
-import { AddItemForm } from './AddItemForm/AddItemForm'
-import { EditableSpan } from './EditableSpan/EditableSpan'
-import { Task } from './Task'
+import { Task } from './Task/Task'
+import { setTasksTC } from './tasks-reducer'
+import { FilterValuesType } from './todolists-reducer'
 
 export type TodolistPropsType = {
   id: string

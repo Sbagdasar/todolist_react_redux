@@ -5,8 +5,8 @@ import './index.css'
 import { Provider } from 'react-redux'
 
 import { App } from './app/App'
+import { store } from './app/store'
 import reportWebVitals from './reportWebVitals'
-import { store } from './state/store'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 

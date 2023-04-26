@@ -1,5 +1,5 @@
-import { TaskPriorities, TaskStatuses, TaskType, TodolistType } from '../api/todolist-api'
-import { TasksStateType } from '../trash/App'
+import { TaskPriorities, TaskStatuses, TaskType, TodolistType } from '../../../api/todolist-api'
+import { TasksStateType } from '../../../app/App'
 
 import {
   changeTaskTitleAC,
