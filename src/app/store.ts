@@ -7,16 +7,19 @@ import {
   todolistsReducer,
 } from '../features/TodolistsList/TodoList/todolists-reducer'
 
+import { AppActionType, appReducer } from './app-reducer'
+
 const rootReducer = combineReducers({
   tasks: tasksReducer,
   todolists: todolistsReducer,
+  app: appReducer,
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunk))
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
 
-type RootAppActions = TasksActionType | TodolistsActionType
+type RootAppActions = TasksActionType | TodolistsActionType | AppActionType
 
 export type AppThunkType<ReturnType = void> = ThunkAction<
   ReturnType,
