@@ -29,8 +29,22 @@ export function App() {
   let todolistID2 = v1()
 
   let [todolists, setTodolists] = useState<Array<TodolistDomainType>>([
-    { id: todolistID1, title: 'What to learn', filter: 'all', addedDate: '', order: 0 },
-    { id: todolistID2, title: 'What to buy', filter: 'all', addedDate: '', order: 1 },
+    {
+      id: todolistID1,
+      title: 'What to learn',
+      filter: 'all',
+      addedDate: '',
+      order: 0,
+      entityStatus: 'idle',
+    },
+    {
+      id: todolistID2,
+      title: 'What to buy',
+      filter: 'all',
+      addedDate: '',
+      order: 1,
+      entityStatus: 'idle',
+    },
   ])
 
   let [tasks, setTasks] = useState<TasksStateType>({
@@ -155,7 +169,7 @@ export function App() {
     let newTodolistId = v1()
 
     setTodolists([
-      { id: newTodolistId, title, filter: 'all', addedDate: '', order: 3 },
+      { id: newTodolistId, title, filter: 'all', addedDate: '', order: 3, entityStatus: 'idle' },
       ...todolists,
     ])
     setTasks({ ...tasks, [newTodolistId]: [] })
@@ -203,8 +217,7 @@ export function App() {
                 <Paper style={{ padding: '10px' }}>
                   <Todolist
                     key={todolist.id}
-                    id={todolist.id}
-                    title={todolist.title}
+                    todolist={todolist}
                     tasks={filteredTasks}
                     removeTask={removeTask}
                     changeFilter={changeFilter}
@@ -213,7 +226,6 @@ export function App() {
                     changeTaskTitle={changeTaskTitle}
                     removeTodolist={removeTodolist}
                     changeTodolistTitle={changeTodolistTitle}
-                    filter={todolist.filter}
                   />
                 </Paper>
               </Grid2>

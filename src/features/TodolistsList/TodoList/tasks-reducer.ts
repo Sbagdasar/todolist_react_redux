@@ -6,7 +6,7 @@ import {
   UpdateTaskModelType,
 } from '../../../api/todolist-api'
 import { TasksStateType } from '../../../app/App'
-import { setAppStatusAC } from '../../../app/app-reducer'
+import { setAppErrorAC, setAppStatusAC } from '../../../app/app-reducer'
 import { AppThunkType } from '../../../app/store'
 
 import {
@@ -112,8 +112,19 @@ export const createTaskTC =
 
     const res = await todolistAPI.createTask(todolistId, title)
 
-    dispatch(createTaskAC(res.data.data.item))
-    dispatch(setAppStatusAC('succeeded'))
+    if (res.data.resultCode === 0) {
+      const task = res.data.data.item
+
+      dispatch(createTaskAC(task))
+      dispatch(setAppStatusAC('succeeded'))
+    } else {
+      if (res.data.messages.length) {
+        dispatch(setAppErrorAC(res.data.messages[0]))
+      } else {
+        dispatch(setAppErrorAC('Some error occurred'))
+      }
+      dispatch(setAppStatusAC('failed'))
+    }
   }
 export const updateTaskTC =
   (todoListId: string, taskId: string, domainModel: UpdateDomainTaskModelType): AppThunkType =>
@@ -135,8 +146,17 @@ export const updateTaskTC =
 
     const res = await todolistAPI.updateTask(todoListId, taskId, apiModel)
 
-    dispatch(updateTaskAC(todoListId, taskId, domainModel))
-    dispatch(setAppStatusAC('succeeded'))
+    if (res.data.resultCode === 0) {
+      dispatch(updateTaskAC(todoListId, taskId, domainModel))
+      dispatch(setAppStatusAC('succeeded'))
+    } else {
+      if (res.data.messages.length) {
+        dispatch(setAppErrorAC(res.data.messages[0]))
+      } else {
+        dispatch(setAppErrorAC('Some error occurred'))
+      }
+      dispatch(setAppStatusAC('failed'))
+    }
   }
 
 //type

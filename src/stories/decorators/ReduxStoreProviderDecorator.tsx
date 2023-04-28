@@ -5,6 +5,7 @@ import { combineReducers, createStore } from 'redux'
 import { v1 } from 'uuid'
 
 import { TaskPriorities, TaskStatuses } from '../../api/todolist-api'
+import { appReducer } from '../../app/app-reducer'
 import { AppRootStateType } from '../../app/store'
 import { tasksReducer } from '../../features/TodolistsList/TodoList/tasks-reducer'
 import { todolistsReducer } from '../../features/TodolistsList/TodoList/todolists-reducer'
@@ -12,13 +13,27 @@ import { todolistsReducer } from '../../features/TodolistsList/TodoList/todolist
 const rootReducer = combineReducers({
   tasks: tasksReducer,
   todolists: todolistsReducer,
+  app: appReducer,
 })
-
+//@ts-ignore
 const initialGlobalState: AppRootStateType = {
-  // @ts-ignore
   todolists: [
-    { id: 'todolistId1', title: 'What to learn', filter: 'all', addedDate: '', order: 0 },
-    { id: 'todolistId2', title: 'What to buy', filter: 'all', addedDate: '', order: 1 },
+    {
+      id: 'todolistId1',
+      title: 'What to learn',
+      filter: 'all',
+      addedDate: '',
+      order: 0,
+      entityStatus: 'idle',
+    },
+    {
+      id: 'todolistId2',
+      title: 'What to buy',
+      filter: 'all',
+      addedDate: '',
+      order: 1,
+      entityStatus: 'idle',
+    },
   ],
   tasks: {
     ['todolistId1']: [
