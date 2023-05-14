@@ -77,7 +77,7 @@ export const Todolist = memo(({ todolist, ...props }: TodolistPropsType) => {
         </div>
 
         <div>
-          <AddItemForm addItem={addTaskHandler} />
+          <AddItemForm addItem={addTaskHandler} disabled={todolist.entityStatus === 'loading'} />
         </div>
       </div>
 
