@@ -3,12 +3,13 @@ import { appReducer, RequestStatusType, setAppErrorAC, setAppStatusAC } from './
 type StartStateType = {
   status: RequestStatusType
   error: null | string
+  isInitialized: false
 }
 
 let startState: StartStateType
 
 beforeEach(() => {
-  startState = { status: 'idle', error: null }
+  startState = { status: 'idle', error: null, isInitialized: false }
 })
 
 test('set app status', () => {
