@@ -3,12 +3,13 @@ import React, { useCallback, useEffect } from 'react'
 import { Paper } from '@mui/material'
 import Grid2 from '@mui/material/Unstable_Grid2'
 import { useSelector } from 'react-redux'
+import { Navigate } from 'react-router-dom'
 
 import { TaskStatuses } from '../../api/todolist-api'
 import { TasksStateType } from '../../app/App'
 import { AppRootStateType } from '../../app/store'
 import { AddItemForm } from '../../components/AddItemForm/AddItemForm'
-import { useAppDispatch } from '../../hooks/appHooks'
+import { useAppDispatch, useAppSelector } from '../../hooks/appHooks'
 
 import { createTaskTC, removeTaskTC, updateTaskTC } from './TodoList/tasks-reducer'
 import { Todolist } from './TodoList/Todolist'
@@ -24,8 +25,12 @@ import {
 
 export const TodoListsList = () => {
   let dispatch = useAppDispatch()
+  let isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
 
   useEffect(() => {
+    if (!isLoggedIn) {
+      return
+    }
     dispatch(getTodolistsTC())
   }, [])
 
@@ -83,6 +88,10 @@ export const TodoListsList = () => {
     },
     [dispatch]
   )
+
+  if (!isLoggedIn) {
+    return <Navigate to={'/login'} />
+  }
 
   return (
     <>
