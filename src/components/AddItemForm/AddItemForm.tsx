@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField'
 
 type AddItemFormPropsType = {
   addItem: (title: string) => void
+  disabled?: boolean
 }
 export const AddItemForm = memo((props: AddItemFormPropsType) => {
   const [title, setTitle] = useState<string>('')
@@ -40,8 +41,9 @@ export const AddItemForm = memo((props: AddItemFormPropsType) => {
         size={'small'}
         label={'Title'}
         helperText={error}
+        disabled={props.disabled}
       />
-      <IconButton color={'primary'} onClick={addTaskHandler}>
+      <IconButton color={'primary'} onClick={addTaskHandler} disabled={props.disabled}>
         <AddBoxOutlinedIcon />
       </IconButton>
     </div>
